@@ -10,12 +10,11 @@ Type Safety
 
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { Book } from '../book-list/books.model';
+import { booksFeature } from './books.reducer';
 
 export const selectBooks = createFeatureSelector<ReadonlyArray<Book>>('books');
 
-export const selectCollectionState = createFeatureSelector<
-  ReadonlyArray<string>
->('collection');
+export const selectCollectionState = createFeatureSelector<ReadonlyArray<string>>('collection');
 
 export const selectBookCollection = createSelector(
   selectBooks,
@@ -24,3 +23,9 @@ export const selectBookCollection = createSelector(
     return collection.map((id) => books.find((book) => book.id === id)!);
   }
 );
+
+export const selectBookListPageViewModel = createSelector(
+  booksFeature.selectBooks,
+  booksFeature.selectLoading,
+  (books, loading) => ({books, loading})
+)

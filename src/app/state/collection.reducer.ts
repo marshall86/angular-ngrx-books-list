@@ -12,5 +12,6 @@ export const collectionReducer = createReducer(
     if (state.indexOf(bookId) > -1) return state;
 
     return [...state, bookId];
-  })
+  }),
+  on(BooksActions.pageLoaded, (state, {loaded}) => [...state, loaded])
 );
