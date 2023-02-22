@@ -26,10 +26,7 @@ export class AppComponent {
   ngOnInit() {
     this.booksService
       .getBooks()
-      .subscribe((books) => {
-          console.log(books);
-          this.store.dispatch(BooksApiActions.retrievedBookList({ books }))
-        }
+      .subscribe((books) => this.store.dispatch(BooksApiActions.retrievedBookList({ books }))
       );
   }
 }
