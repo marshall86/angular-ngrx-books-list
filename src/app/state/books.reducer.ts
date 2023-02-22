@@ -1,3 +1,7 @@
+/**
+ * Reducers in NgRx are responsible for handling transitions from one state to the next state in your application. Reducer functions handle these transitions by determining which actions to handle based on the action's type.
+ */
+
 import { createReducer, on } from '@ngrx/store';
 
 import { BooksApiActions } from './books.actions';
