@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import {
   selectBookCollection,
-  selectBooks,
+  selectBooks
 } from './state/books/books.selectors';
 import { Book } from './book-list/books.model';
 import { Observable } from 'rxjs';
