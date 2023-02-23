@@ -4,8 +4,9 @@
 
 import { createFeature, createReducer, on } from '@ngrx/store';
 
-import { BooksActions, BooksApiActions } from './books.actions';
-import { Book } from '../book-list/books.model';
+import { BooksApiActions } from './books.actions';
+import { Book } from '../../book-list/books.model';
+import { CollectionActions } from '../collection/collection.actions';
 
 export const initialState: ReadonlyArray<Book> = [];
 
@@ -38,7 +39,7 @@ export const booksFeature = createFeature({
   name: 'books',
   reducer: createReducer(
     initialFeatureState,
-    on(BooksActions.pageLoaded, (state) => ({
+    on(CollectionActions.pageLoaded, (state) => ({
       ...state,
       loading: true,
     })),

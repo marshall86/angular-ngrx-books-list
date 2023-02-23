@@ -1,36 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { selectBookCollection, selectBooks } from './state/books.selectors';
-import { BooksActions, BooksApiActions } from './state/books.actions';
-import { GoogleBooksService } from './book-list/books.service';
+import {
+  selectBookCollection,
+  selectBooks,
+} from './state/books/books.selectors';
+import { Book } from './book-list/books.model';
+import { Observable } from 'rxjs';
+import { CollectionActions } from './state/collection/collection.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit{
-  books$ = this.store.select(selectBooks);
+export class AppComponent implements OnInit {
+  books$: Observable<readonly Book[]> = this.store.select(selectBooks);
   bookCollection$ = this.store.select(selectBookCollection);
 
-  constructor(private booksService: GoogleBooksService, private store: Store) {}
+  constructor(private store: Store<{books: Book[]}>) {}
 
   onAdd(bookId: string): void {
-    this.store.dispatch(BooksActions.addBook({ bookId }));
+    this.store.dispatch(CollectionActions.addBook({ bookId }));
   }
 
   onRemove(bookId: string): void {
-    this.store.dispatch(BooksActions.removeBook({ bookId }));
+    this.store.dispatch(CollectionActions.removeBook({ bookId }));
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(BooksActions.pageLoaded({loaded: 'true'}));
-
-    this.booksService
-      .getBooks()
-      .subscribe((books) => {
-        this.store.dispatch(BooksApiActions.retrievedBookList({ books }));
-        this.store.dispatch(BooksApiActions.booksListLoaded({loaded: 'true'}));
-      });
+    this.store.dispatch({ type: '[Load Books Page] --- Effects' });
   }
 }

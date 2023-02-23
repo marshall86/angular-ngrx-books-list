@@ -9,6 +9,8 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
 import { debug } from './state/meta.reducers';
 import { reducers } from './state/reducers';
+import { BookEffects } from './state/books/books.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 export const metaReducers: MetaReducer<any>[] = [debug];
 
@@ -24,8 +26,9 @@ export const metaReducers: MetaReducer<any>[] = [debug];
         strictActionWithinNgZone: true,
         strictActionTypeUniqueness: true,
       },
-      metaReducers,
+      metaReducers
     }),
+    EffectsModule.forRoot([BookEffects]),
     // BooksModule,
     HttpClientModule
   ],
