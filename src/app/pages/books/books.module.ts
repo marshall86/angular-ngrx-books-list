@@ -7,11 +7,11 @@ import { BookListComponent } from '../../components/book-list/book-list.componen
 import { BookEffects } from 'src/app/state/books/books.effects';
 import { booksReducer } from 'src/app/state/books/books.reducer';
 import { BooksRoutingModule } from './books-routing.module';
-import { HomeComponent } from './home/home.component';
+import { BooksComponent } from './books.component';
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    BooksComponent,
     BookCollectionComponent,
     BookListComponent
   ],

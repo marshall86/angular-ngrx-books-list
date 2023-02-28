@@ -6,7 +6,7 @@ import { createAction, createActionGroup, props } from '@ngrx/store';
 import { Book } from 'src/app/interfaces/books.model';
 
 export const invokeBooksAPI = createAction(
-  '[Load Books Page] --- Effects'
+  '[Books API] --- Load Effects'
 );
 
 export const booksFetchAPISuccess = createAction(

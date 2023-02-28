@@ -1,8 +1,0 @@
-
-<app-book-list class="book-list" [books]="(books$ | async)!" (add)="onAdd($event)"></app-book-list>
-
-<app-book-collection class="book-collection" [books]="(bookCollection$ | async)!" (remove)="onRemove($event)">
-</app-book-collection>
-
-<span>{{books$ | async | json}}</span>
-

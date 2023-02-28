@@ -12,7 +12,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 
-
 export const metaReducers: MetaReducer<any>[] = [debug];
 
 @NgModule({
@@ -32,13 +31,10 @@ export const metaReducers: MetaReducer<any>[] = [debug];
       metaReducers
     }),
     EffectsModule.forRoot([]),
-    // EffectsModule.forRoot([BookEffects]),
     StoreRouterConnectingModule.forRoot()
   ],
   declarations: [
-    AppComponent, 
-    /* BookListComponent, 
-    BookCollectionComponent */
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })

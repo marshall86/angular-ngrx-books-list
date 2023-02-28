@@ -14,6 +14,11 @@ import { booksFeature } from './books.reducer';
 
 export const selectBooks = createFeatureSelector<Book[]>('books');
 
+export const getBooks = createSelector(
+  selectBooks,
+  (state) => state
+)
+
 export const selectCollectionState = createFeatureSelector<string[]>('collection');
 
 export const selectBookCollection = createSelector(

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Book } from 'src/app/interfaces/books.model';
 import { invokeBooksAPI } from 'src/app/state/books/books.actions';
 import { selectBooks } from 'src/app/state/books/books.reducer';
-import { selectBookCollection } from 'src/app/state/books/books.selectors';
+import { getBooks, selectBookCollection } from 'src/app/state/books/books.selectors';
 import { CollectionActions } from 'src/app/state/collection/collection.actions';
 
 @Component({
@@ -12,8 +12,8 @@ import { CollectionActions } from 'src/app/state/collection/collection.actions';
   templateUrl: './books.component.html',
 })
 export class BooksComponent implements OnInit {
-  books$: Observable<Book[]> = this.store.pipe(select(selectBooks));
-  bookCollection$ = this.store.pipe(select(selectBookCollection));
+  books$: Observable<readonly Book[]> = this.store.select(selectBooks);
+  bookCollection$ = this.store.select(selectBookCollection);
 
   constructor(private store: Store<{books: Book[]}>) {}
 
@@ -27,6 +27,6 @@ export class BooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(invokeBooksAPI());
-   // this.books$ = this.booksService.getBooks()
+    this.books$ = this.store.select(getBooks);
   }
 }

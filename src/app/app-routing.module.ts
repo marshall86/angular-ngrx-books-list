@@ -10,7 +10,11 @@ const routes: Routes = [
     path: 'cars',
     loadChildren: () => import('./pages/cars/cars.module').then(m => m.CarsPageModule),
   },
-  { path: '**', redirectTo: 'books' }
+  {
+    path: '',
+    redirectTo: 'books',
+    pathMatch: 'full',
+  },
 ];
 
 

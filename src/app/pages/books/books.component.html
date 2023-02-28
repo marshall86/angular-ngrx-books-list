@@ -3,8 +3,3 @@
 
 <app-book-collection class="book-collection" [books]="(bookCollection$ | async)!" (remove)="onRemove($event)">
 </app-book-collection>
-
-
-<div class="col" *ngFor="let book of books$ | async">
-  {{book | json}}
-</div>

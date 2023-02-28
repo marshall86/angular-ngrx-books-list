@@ -7,13 +7,15 @@ import {
 } from './state/books/books.selectors';
 import { Observable } from 'rxjs';
 import { CollectionActions } from './state/collection/collection.actions';
+import { invokeBooksAPI } from './state/books/books.actions';
+import { Book } from './interfaces/books.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent  {
-  /*books$: Observable<readonly Book[]> = this.store.select(selectBooks);
+export class AppComponent {} /* implements OnInit {
+  books$: Observable<readonly Book[]> = this.store.select(selectBooks);
   bookCollection$ = this.store.select(selectBookCollection);
 
   constructor(private store: Store<{books: Book[]}>) {}
@@ -28,5 +30,6 @@ export class AppComponent  {
 
   ngOnInit(): void {
     this.store.dispatch(invokeBooksAPI());
-  }*/
+  }
 }
+*/
