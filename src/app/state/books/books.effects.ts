@@ -13,11 +13,10 @@
 import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, of, map, mergeMap, withLatestFrom } from 'rxjs';
-import { BooksApiActions, booksFetchAPISuccess, invokeBooksAPI } from './books.actions';
+import { map, mergeMap, withLatestFrom } from 'rxjs';
+import { booksFetchAPISuccess, invokeBooksAPI } from './books.actions';
 import { selectBooks } from './books.reducer';
 import { select, Store } from '@ngrx/store';
-import { Book } from 'src/app/interfaces/books.model';
 import { GoogleBooksService } from 'src/app/services/books.service';
 
 @Injectable()
@@ -29,28 +28,15 @@ export class BookEffects {
   ) {}
 
   loadBooks$ = createEffect(() =>
-    /*this.actions$.pipe(
+    this.actions$.pipe(
       ofType(invokeBooksAPI),
-      withLatestFrom(this.store.pipe(select(selectBooks))),
-      mergeMap(() =>
-        this.booksService.getBooks().pipe(
-          // BooksApiActions.retrievedBookList({books})
-          map((books: Book[]) => booksFetchAPISuccess({books})),
-          catchError(() => of({ type: '[Books API] Effects --- Loading error' }) )
-        )
+        withLatestFrom(this.store.pipe(select(selectBooks))),
+        mergeMap(([, _bookformStore]) => {
+          return this.booksService
+            .getBooks()
+            .pipe(map((data) => booksFetchAPISuccess({ books: data })));
+        })
       )
-    )
-  );*/
-
-  this.actions$.pipe(
-    ofType(invokeBooksAPI),
-      withLatestFrom(this.store.pipe(select(selectBooks))),
-      mergeMap(([, _bookformStore]) => {
-        return this.booksService
-          .getBooks()
-          .pipe(map((data) => booksFetchAPISuccess({ books: data })));
-      })
-    )
   );
 
 }
