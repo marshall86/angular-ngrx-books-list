@@ -7,11 +7,10 @@ import { MetaReducer, StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { debug } from './state/meta.reducers';
 import { reducers } from './state/reducers';
-import { BookEffects } from './state/books/books.effects';
-import { EffectsModule } from '@ngrx/effects';
 
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
-import { RouterModule } from '@angular/router';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { AppRoutingModule } from './app-routing.module';
 
 
 export const metaReducers: MetaReducer<any>[] = [debug];
@@ -19,6 +18,8 @@ export const metaReducers: MetaReducer<any>[] = [debug];
 @NgModule({
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -30,27 +31,15 @@ export const metaReducers: MetaReducer<any>[] = [debug];
       },
       metaReducers
     }),
-    EffectsModule.forRoot([BookEffects]),
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: 'books',
-        pathMatch: 'prefix'
-      },
-      {
-        path: 'books',
-        loadChildren: () => import('./books/books.module').then(m => m.BooksPageModule),
-      },
-      {
-        path: 'cars',
-        loadChildren: () => import('./cars/cars.module').then(m => m.CarsPageModule),
-      }
-    ]),
-    StoreRouterConnectingModule.forRoot(),
-    // BooksModule,
-    HttpClientModule
+    EffectsModule.forRoot([]),
+    // EffectsModule.forRoot([BookEffects]),
+    StoreRouterConnectingModule.forRoot()
   ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
+  declarations: [
+    AppComponent, 
+    /* BookListComponent, 
+    BookCollectionComponent */
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

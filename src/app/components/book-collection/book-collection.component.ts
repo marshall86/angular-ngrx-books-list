@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Book } from '../book-list/books.model';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Book } from 'src/app/interfaces/books.model';
 
 @Component({
   selector: 'app-book-collection',
   templateUrl: './book-collection.component.html',
   // styleUrls: ['./book-collection.component.css'],
+ // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookCollectionComponent {
-  @Input() books: ReadonlyArray<Book> = [];
+  @Input() books: Book[] = [];
   @Output() remove = new EventEmitter<string>();
 }

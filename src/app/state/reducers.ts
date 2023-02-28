@@ -1,9 +1,9 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { Book } from "../book-list/books.model";
+import { Book } from "../interfaces/books.model";
 import { booksReducer } from "./books/books.reducer";
 import { collectionReducer } from "./collection/collection.reducer";
 
-interface AppState {
+export interface AppState {
   books: Readonly<Book[]>,
   collection: Readonly<string[]>
 };

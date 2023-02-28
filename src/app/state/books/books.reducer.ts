@@ -4,14 +4,15 @@
 
 import { createFeature, createReducer, on } from '@ngrx/store';
 
-import { BooksApiActions } from './books.actions';
-import { Book } from '../../book-list/books.model';
+import { BooksApiActions, booksFetchAPISuccess } from './books.actions';
 import { CollectionActions } from '../collection/collection.actions';
+import { Book } from 'src/app/interfaces/books.model';
 
-export const initialState: ReadonlyArray<Book> = [];
+export const initialState: Book[] = [];
 
 export const booksReducer = createReducer(
   initialState,
+  on(booksFetchAPISuccess, (_state, { books }) => books),
   on(BooksApiActions.retrievedBookList, (_state, { books }) => books)
 );
 

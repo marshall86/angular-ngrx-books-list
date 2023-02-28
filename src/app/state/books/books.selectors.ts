@@ -9,12 +9,12 @@ Type Safety
  */
 
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { Book } from '../../book-list/books.model';
+import { Book } from 'src/app/interfaces/books.model';
 import { booksFeature } from './books.reducer';
 
-export const selectBooks = createFeatureSelector<ReadonlyArray<Book>>('books');
+export const selectBooks = createFeatureSelector<Book[]>('books');
 
-export const selectCollectionState = createFeatureSelector<ReadonlyArray<string>>('collection');
+export const selectCollectionState = createFeatureSelector<string[]>('collection');
 
 export const selectBookCollection = createSelector(
   selectBooks,

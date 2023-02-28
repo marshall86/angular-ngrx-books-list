@@ -8,6 +8,6 @@ export class CarsComponent implements OnInit {
   constructor() {}
   
   ngOnInit(): void {
-    // this.store.dispatch({ type: '[Load Books Page] --- Effects' });
+    // this.store.dispatch(invokeBooksAPI());
   }
 }
