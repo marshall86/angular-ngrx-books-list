@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: CarsComponent,
-  }
+  },
+  { 
+    path: ':id', 
+    loadChildren: () => import('./car/car.module').then(m => m.CarModule) 
+  },
+  
 ];
 
 @NgModule({

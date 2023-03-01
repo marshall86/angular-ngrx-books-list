@@ -1,1 +1,7 @@
 <h2>Cars Collection</h2>
+
+<ol *ngIf="cars$ | async as cars">
+	<a *ngFor="let car of cars" [routerLink]="car.id">
+		<li>{{ car.make }} | {{ car.model}} | {{ car.year}}
+	</a>
+</ol>

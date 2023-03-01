@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { selectRouteParams } from '../router.selectors';
-import { carAdapter, CarState } from './car.reducer';
+import { Car, carAdapter, CarState } from './car.reducer';
 
 export const carsFeatureSelector = createFeatureSelector<CarState>('cars');
 
@@ -21,3 +21,18 @@ export const selectCar = createSelector(
   selectRouteParams,
   (cars, { carId }) => cars[carId]
 );
+
+
+/*
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://github.com/ngrx/platform
+*/
+
+
+export const selectAllCars = createFeatureSelector<Car[]>('cars');
+
+
+export const getCars = createSelector(
+  selectAllCars,
+  (state) => state
+)

@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { debug } from './state/meta.reducers';
 import { reducers } from './state/reducers';
 
-import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,9 +30,10 @@ export const metaReducers: MetaReducer<any>[] = [debug];
       },
       metaReducers
     }),
-    StoreModule.forRoot({
+    /*StoreModule.forRoot({
+      cars: carReducer,
       router: routerReducer,
-    }),
+    }),*/
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot()
   ],
